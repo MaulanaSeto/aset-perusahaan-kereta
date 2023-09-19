@@ -5,7 +5,7 @@
        ```bash
        python -m venv env
        ```
-       Selanjutnya menjalankan lingkungan virtual untuk mengisolasi paket dan dependensi aplikasi agar tidak bertabrakan dengan versi lain dengan perintah berikut.
+       Selanjutnya menjalankan lingkungan virtual dengan perintah berikut.
        ```bash
        env\Scripts\activate.bat
        ```
@@ -79,8 +79,12 @@
      ```
    * Melakukan *Deployment* ke Adaptable
 3. Bagan
-4. ENV
-5. 
+4. Alasan Penggunaan Lingkungan Virtual
+   Lingkungan virtual digunakan untuk mengisolasi paket serta dependensi dari aplikasi sehingga tidak bertabrakan dengan versi lain yang ada pada komputer. meskipun begitu, pembuatan proyek Django tanpa lingkungan virtual tetap dapat dilakukan.
+6. Perbedaan PMVC, MVT, dan MVVM
+   * MVC (Model-View-Controller)<br>MVC adalah konsep yang digunakan dalam pengembangan web tradisional.
+   * MVT (Model-View-Template)<br>MVT adalah konsep yang digunakan dalam *framework* Django untuk pengembangan web dengan Python.
+   * MVVM (Model-View-ViewModel)<br>MVVM lebih umum digunakan dalam pengembangan aplikasi berbasis klien dan memberikan pemisahan yang lebih kuat antara tampilan pengguna dan logika bisnis daripada MVC atau MVT.
 
 # Tugas 3
 1. Perbedaan `POST` dan `GET`<br>Perbedaan metode `POST` dan `GET` dalam Django yaitu metode `POST` digunakan untuk mengirim data ke server untuk mengubah atau menyimpan data, sedangkan metode `GET` digunakan untuk mengambil atau membaca data dari server.
