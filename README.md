@@ -172,3 +172,9 @@
      path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
      ...
      ```
+5. Tangkapan Layar Postman
+   * HTML<br>![HTML][https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%201.png]
+   * XML<br>![XML][https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%202.png]
+   * JSON<br>![JSON][https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%203.png]
+   * XML by ID<br>![XML by ID][https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%204.png]
+   * JSON by ID<br>![JSON by ID][https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%205.png]
