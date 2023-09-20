@@ -79,7 +79,8 @@
      ```
    * Melakukan *Deployment* ke Adaptable
 3. Bagan
-4. Alasan Penggunaan Lingkungan Virtual
+4. 
+5. Alasan Penggunaan Lingkungan Virtual
    Lingkungan virtual digunakan untuk mengisolasi paket serta dependensi dari aplikasi sehingga tidak bertabrakan dengan versi lain yang ada pada komputer. meskipun begitu, pembuatan proyek Django tanpa lingkungan virtual tetap dapat dilakukan.
 6. Perbedaan PMVC, MVT, dan MVVM
    * MVC (Model-View-Controller)<br>MVC adalah konsep yang digunakan dalam pengembangan web tradisional.
@@ -173,9 +174,8 @@
      ...
      ```
 5. Tangkapan Layar Postman
-   * HTML
-     ![HTML][https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%201.png]
-   * XML<br>![XML][https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%202.png]
-   * JSON<br>![JSON][https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%203.png]
-   * XML by ID<br>![XML by ID][https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%204.png]
-   * JSON by ID<br>![JSON by ID][https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%205.png]
+   * HTML<br>![HTML](https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%201.png)
+   * XML<br>![XML](https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%202.png)
+   * JSON<br>![JSON](https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%203.png)
+   * XML by ID<br>![XML by ID](https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%204.png)
+   * JSON by ID<br>![JSON by ID](https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%205.png)
