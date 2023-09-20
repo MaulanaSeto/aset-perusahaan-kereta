@@ -78,7 +78,7 @@
      ]
      ```
    * Melakukan *Deployment* ke Adaptable
-3. Bagan Pola Django<br>![Bagan Pola Django][https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Bagan%20Pola%20Django.png]
+3. Bagan Pola Django<br>![Bagan Pola Django](https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Bagan%20Pola%20Django.png)
    Ketika pengguna memberikan permintaan, permintaan tersebut akan dieksekusi oleh `urls.py` sebagai Konfigurator URL untuk memilih `view` pada `views.py`. Setelah `view` didapat, `views.py` akan memilih templat HTML lalu menampilkannya. `views.py` juga mengirimkan kueri ke Model. Ketika Model menerima kueri maupun respons data, Model melakukan transaksi data dengan Basis Data.
 5. Alasan Penggunaan Lingkungan Virtual
    Lingkungan virtual digunakan untuk mengisolasi paket serta dependensi dari aplikasi sehingga tidak bertabrakan dengan versi lain yang ada pada komputer. meskipun begitu, pembuatan proyek Django tanpa lingkungan virtual tetap dapat dilakukan.
