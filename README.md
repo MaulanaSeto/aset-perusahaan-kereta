@@ -58,7 +58,7 @@
        python manage.py migrate
        ```
    * Membuat Fungsi di `vews.py`<br>Mengimpor pustaka dan menambahkan fungsi `show_main` pada berkas `views.py` di subdirektori `main` dengan kode berikut.
-     ```bash
+     ```python
      def show_main(request):
          context = {
              'name': 'Maulana Seto',
