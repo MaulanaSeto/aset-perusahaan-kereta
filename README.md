@@ -57,7 +57,7 @@
        ```bash
        python manage.py migrate
        ```
-   * Membuat Fungsi di `vews.py`<br>Mengimpor pustaka dan menambahkan fungsi `show_main` pada berkas `views.py` di subdirektori `main` dengan kode berikut.
+   * Membuat Fungsi di `views.py`<br>Mengimpor pustaka dan menambahkan fungsi `show_main` pada berkas `views.py` di subdirektori `main` dengan kode berikut.
      ```python
      def show_main(request):
          context = {
@@ -177,3 +177,22 @@
    * JSON<br>![JSON](https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%203.png)
    * XML by ID<br>![XML by ID](https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%204.png)
    * JSON by ID<br>![JSON by ID](https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Screenshot%205.png)
+
+# Tugas 4
+1. Django `UserCreationForm`<br>Django `UserCreationForm` adalah salah satu bentuk formulir yang disediakan oleh Django, sebuah kerangka kerja pengembangan web Python yang populer. Formulir ini digunakan untuk membuat dan mendaftarkan pengguna baru dalam aplikasi web yang dibangun dengan Django. `UserCreationForm` telah disediakan oleh Django secara bawaan untuk memudahkan pengembang dalam proses pembuatan dan manajemen akun pengguna.
+   * Kelebihan
+     * Mudah digunakan.
+     * Dapat memvalidasi data secara otomatis.
+     * Mudah diintegrasikan.
+     * *Customizable*.
+     * Kekurangan
+   * Memiliki tampilan yang standar.
+     * Kurang fleksibel untuk kasus khusus.
+     * Tidak memiliki fitur keamanan bawaan lanjutan.
+2. Autentikasi dan Otorisasi
+   * Autentikasi<br>Autentikasi adalah proses mengidentifikasi pengguna dan memeriksa apakah pengguna tersebut adalah entitas yang dia klaim. Ini adalah langkah pertama dalam mengelola akses ke aplikasi web dan mengidentifikasi pengguna berdasarkan kredensial, seperti nama pengguna dan kata sandi.
+   * Otorisasi<br>Otorisasi adalah proses yang terjadi setelah autentikasi. Ini berkaitan dengan menentukan apa yang diizinkan atau tidak diizinkan oleh pengguna yang telah terautentikasi. Dalam istilah sederhana, ini adalah tentang memberikan atau menolak akses pengguna ke sumber daya atau tindakan tertentu dalam aplikasi.
+    Autentikasi dan otorisasi sangat penting untuk menjaga keamanan aplikasi web. Autentikasi memastikan bahwa hanya pengguna yang sah yang dapat mengakses aplikasi, sementara otorisasi memastikan bahwa pengguna hanya dapat melakukan tindakan atau mengakses data yang sesuai dengan peran atau izin mereka.
+4. *Cookies*
+5. Penggunaan *Cookies*
+6. Implementasi Daftar Periksa
