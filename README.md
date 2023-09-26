@@ -44,8 +44,8 @@
        class Product(models.Model):
            type = models.CharField(max_length=255)
            name = models.CharField(max_length=255)
-           amount = models.IntegerField()
            owner = models.CharField(max_length=255)
+           amount = models.IntegerField()
            date_added = models.DateField(auto_now_add=True)
            description = models.TextField()
        ```
@@ -72,7 +72,6 @@
      from main.views import show_main
 
      app_name = 'main'
-
      urlpatterns = [
          path('', show_main, name='show_main'),
      ]
@@ -102,6 +101,13 @@
      class Meta:
           model = Product
           fields = ["type", "name", "amount", "owner", "description"]
+          labels = {
+              "type": "Jenis",
+              "name": "Nama",
+              "owner": "Pemilik",
+              "amount": "Jumlah",
+              "description": "Deskripsi",
+          }
      ```
      Kemudian  mengimpor beberapa pustaka dan membuat fungsi `create_product` yang digunakan untuk menerima permintaan dari pengguna dengan kode berikut.
      ```python
@@ -158,9 +164,9 @@
            return HttpResponse(serializers.serialize("json", data), content_type="application/json")
        ```
   
-   * Perutean URL `view`<br>Untuk membuat perutean URL kelima `view`, mengimpor kelima fungsi `view` yang telah dibuat ke berkas `urls.py` di folder `main` dengan kode berikut.
+   * Perutean URL `view`<br>Untuk membuat perutean URL kelima `view`, mengimpor seluruh fungsi `view` yang telah dibuat ke berkas `urls.py` di folder `main` dengan kode berikut.
      ```python
-     from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id 
+     from main.views import *
      ```
      Kemudian menambahkan jalur URL masing-masing `view` ke dalam `urlpatterns` dengan kode berikut.
      ```python
@@ -185,14 +191,117 @@
      * Dapat memvalidasi data secara otomatis.
      * Mudah diintegrasikan.
      * *Customizable*.
-     * Kekurangan
-   * Memiliki tampilan yang standar.
+   * Kekurangan
+     * Memiliki tampilan yang standar.
      * Kurang fleksibel untuk kasus khusus.
      * Tidak memiliki fitur keamanan bawaan lanjutan.
 2. Autentikasi dan Otorisasi
-   * Autentikasi<br>Autentikasi adalah proses mengidentifikasi pengguna dan memeriksa apakah pengguna tersebut adalah entitas yang dia klaim. Ini adalah langkah pertama dalam mengelola akses ke aplikasi web dan mengidentifikasi pengguna berdasarkan kredensial, seperti nama pengguna dan kata sandi.
+   * Autentikasi<br>Autentikasi adalah proses mengidentifikasi pengguna dan memeriksa apakah pengguna tersebut adalah entitas yang diklaim. Ini adalah langkah pertama dalam mengelola akses ke aplikasi web dan mengidentifikasi pengguna berdasarkan kredensial, seperti nama pengguna dan kata sandi.
    * Otorisasi<br>Otorisasi adalah proses yang terjadi setelah autentikasi. Ini berkaitan dengan menentukan apa yang diizinkan atau tidak diizinkan oleh pengguna yang telah terautentikasi. Dalam istilah sederhana, ini adalah tentang memberikan atau menolak akses pengguna ke sumber daya atau tindakan tertentu dalam aplikasi.
     Autentikasi dan otorisasi sangat penting untuk menjaga keamanan aplikasi web. Autentikasi memastikan bahwa hanya pengguna yang sah yang dapat mengakses aplikasi, sementara otorisasi memastikan bahwa pengguna hanya dapat melakukan tindakan atau mengakses data yang sesuai dengan peran atau izin mereka.
-4. *Cookies*
-5. Penggunaan *Cookies*
-6. Implementasi Daftar Periksa
+4. *Cookies*<br>*Cookies* adalah sejumlah kecil informasi dikirim oleh server web ke peramban kemudian dikirim kembali oleh peramban pada permintaan halaman berikutnya. *Cookies* digunakan dalam konteks aplikasi web untuk menyimpan informasi tertentu yang perlu dipertahankan antara permintaan-permintaan yang dilakukan oleh pengguna ke server. Ini membantu dalam menjaga keadaan sesi pengguna, pelacakan preferensi, autentikasi, dan banyak hal lain dalam aplikasi web. Data sebuah *cookie* terdiri dari satu pasangan namaatau nilai yang dikirim dalam *header* permintaan HTTP `GET` atau `POST` klien.
+5. Penggunaan *Cookies*<br>
+7. Implementasi Daftar Periksa
+   * Mengimplementasi Fungsi Pendaftaran, Masuk, dan Keluar
+     * Membuat Fungsi Pendaftaran<br>Menjalankan lingkungan virtual kemudian mengimpor beberapa pustaka pada berkas `views.py` di subdirektori `main` dengan kode berikut.
+       ```python
+       from django.shortcuts import redirect
+       from django.contrib.auth.forms import UserCreationForm
+       from django.contrib import messages  
+       ```
+       Lalu membuat fungsi `register` dengan kode berikut.
+       ```python
+       def register(request):
+           form = UserCreationForm()
+           if request.method == "POST":
+               form = UserCreationForm(request.POST)
+               if form.is_valid():
+                   form.save()
+                   messages.success(request, 'Your account has been successfully created!')
+                   return redirect('main:login')
+           context = {'form':form}
+           return render(request, 'register.html', context)
+       ```
+       Terakhir, merutekan fungsi tersebut ke dalam `urlpatterns` pada berkas `urls,py` di subdirektori `main` dengan kode berikut.
+       ```python
+       ...
+       path('register/', register, name='register'),
+       ...
+       ```
+     * Membuat Fungsi Masuk<br>Mengimpor pustaka pada berkas `views.py` di subdirektori `main` dengan kode berikut.
+       ```python
+       from django.contrib.auth import authenticate, login
+       ```
+       Lalu membuat fungsi `login_user` dengan kode berikut.
+       ```python
+       def login_user(request):
+           if request.method == 'POST':
+               username = request.POST.get('username')
+               password = request.POST.get('password')
+               user = authenticate(request, username=username, password=password)
+               if user is not None:
+                   login(request, user)
+                   return redirect('main:show_main')
+               else:
+                   messages.info(request, 'Sorry, incorrect username or password. Please try again.')
+           context = {}
+           return render(request, 'login.html', context)
+       ```
+       Terakhir, merutekan fungsi tersebut ke dalam `urlpatterns` pada berkas `urls,py` di subdirektori `main` dengan kode berikut.
+       ```python
+       ...
+       path('login/', login_user, name='login'),
+       ...
+       ```
+     * Membuat Fungsi Keluar<br>Mengimpor pustaka pada berkas `views.py` di subdirektori `main` dengan kode berikut.
+       ```python
+       from django.contrib.auth import logout
+       ```
+       Lalu membuat fungsi `logout_user` dengan kode berikut.
+       ```python
+       def logout_user(request):
+           logout(request)
+           return redirect('main:login')
+       ```
+       Terakhir, merutekan fungsi tersebut ke dalam `urlpatterns` pada berkas `urls,py` di subdirektori `main` dengan kode berikut.
+       ```python
+       ...
+       path('logout/', logout_user, name='logout'),
+       ...
+       ```
+   * Membuat Akun
+   * Menghubungkan Model `Product` dengan `User`<br>Pertama, mengimpor pustaka pada berkas `models.py` di subdirektori `main` dengan kode berikut.
+     ```python
+     from django.contrib.auth.models import User
+     ```
+     Kedua, menambahkan kode baru di kelas `Product` dengan kode berikut.
+     ```python
+     class Product(models.Model):
+         user = models.ForeignKey(User, on_delete=models.CASCADE)
+     ...
+     ```
+     Ketiga, memperbarui kode fungsi `create_product` pada berkas `views.py` di subdirektori `main` menjadi kode berikut.
+     ```python
+     def create_product(request):
+     form = ProductForm(request.POST or None)
+     if form.is_valid() and request.method == "POST":
+         product = form.save(commit=False)
+         product.user = request.user
+         product.save()
+         return HttpResponseRedirect(reverse('main:show_main'))
+     ...
+     ```
+     Terakhir, memperbarui kode fungsi `show_main` menjadi kode berikut.
+     ```python
+     def show_main(request):
+     products = Product.objects.filter(user=request.user)
+     context = {
+         'name': request.user.username,
+     ...
+     ```
+   * Menampilkan Detail Informasi Pengguna dan Menerapkan *Cookies*<br>Pertama, mengimpor beberapa pustaka pada berkas `views.py` di subdirektori `main` dengan kode berikut.
+     ```python
+     import datetime
+     from django.http import HttpResponseRedirect
+     from django.urls import reverse
+     ```
