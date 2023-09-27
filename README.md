@@ -326,9 +326,77 @@
          response.delete_cookie('last_login')
          return response
      ```
-     Terakhir, menambah kode berikut ke dalam berkas `main.html` pada folder `templates` di subdirektori 'main` dengan kode berikut.
+     Terakhir, menambah kode berikut ke dalam berkas `main.html` pada folder `templates` di subdirektori `main` dengan kode berikut.
      ```html
      ...
      <h5>Sesi terakhir masuk: {{last_login}}</h5>
+     ...
+     ```
+   * Menambahkan Fitur Tambah dan Kurangi Jumlah<br>Pertama, mengimpor pustaka pada berkas `views.py` di subdirektori `main` dengan kode berikut.
+     ```python
+     from django.shortcuts import get_object_or_404
+     ```
+     Kedua, membuat fungsi `increase_product_amount` dan `decrease_product_amount` dengan kode berikut.
+     ```python
+     def increase_product_amount(request, product_id):
+         product = get_object_or_404(Product, id=product_id)
+         product.amount += 1
+         product.save()
+         return redirect('main:show_main')
+
+     def decrease_product_amount(request, product_id):
+         product = get_object_or_404(Product, id=product_id)
+         if product.amount > 0:
+             product.amount -= 1
+             product.save()
+         return redirect('main:show_main')
+     ```
+     Ketiga, merutekan fungsi tersebut ke dalam `urlpatterns` pada berkas `urls,py` di subdirektori `main` dengan kode berikut.
+     ```python
+     ...
+     path('product/increase/<int:product_id>/', increase_product_amount, name='increase_product_amount'),
+     path('product/decrease/<int:product_id>/', decrease_product_amount, name='decrease_product_amount'),
+     ...
+     ```
+     Terakhir, membuat tombol `Tambah` dan `Kurangi` pada berkas `main.html` pada folder `templates` di subdirektori `main` dengan kode berikut.
+     ```html
+     ...
+     <td>{{product.owner}}</td>
+     <td>
+         <span>{{product.amount}}</span>
+         <div>
+             <a href="{% url 'main:increase_product_amount' product.id %}">
+                 <button>Tambah</button>
+             </a>
+             <a href="{% url 'main:decrease_product_amount' product.id %}">
+                 <button>Kurangi</button>
+             </a>
+         </div>
+     </td>
+     <td>{{product.date_added}}</td>
+     ...
+     ```
+   * MenambahkanFitur Hapus Produk<br>Pertama, membuat fungsi `delete_product` pada berkas `views.py` di subdirektori `main` dengan kode berikut.
+     ```python
+     def delete_product(request, product_id):
+         product = get_object_or_404(Product, id=product_id, user=request.user)
+         product.delete()
+         return HttpResponseRedirect(reverse('main:show_main'))
+     ```
+     Kedua, merutekan fungsi tersebut ke dalam `urlpatterns` pada berkas `urls,py` di subdirektori `main` dengan kode berikut.
+     ```python
+     ...
+     path('delete_product/<int:product_id>/', delete_product, name='delete_product'),
+     ...
+     ```
+     Terakhir, membuat tombol `Hapus` pada berkas `main.html` pada folder `templates` di subdirektori `main` dengan kode berikut.
+     ```html
+     ....
+     <td>{{product.description}}</td>
+     <td>
+         <a href="{% url 'main:delete_product' product.id %}">
+             <button>Hapus</button>
+         </a>
+     </td>
      ...
      ```
