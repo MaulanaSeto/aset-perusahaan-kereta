@@ -101,13 +101,6 @@
      class Meta:
           model = Product
           fields = ["type", "name", "amount", "owner", "description"]
-          labels = {
-              "type": "Jenis",
-              "name": "Nama",
-              "owner": "Pemilik",
-              "amount": "Jumlah",
-              "description": "Deskripsi",
-          }
      ```
      Kemudian  mengimpor beberapa pustaka dan membuat fungsi `create_product` yang digunakan untuk menerima permintaan dari pengguna dengan kode berikut.
      ```python
@@ -198,10 +191,13 @@
 2. Autentikasi dan Otorisasi
    * Autentikasi<br>Autentikasi adalah proses mengidentifikasi pengguna dan memeriksa apakah pengguna tersebut adalah entitas yang diklaim. Ini adalah langkah pertama dalam mengelola akses ke aplikasi web dan mengidentifikasi pengguna berdasarkan kredensial, seperti nama pengguna dan kata sandi.
    * Otorisasi<br>Otorisasi adalah proses yang terjadi setelah autentikasi. Ini berkaitan dengan menentukan apa yang diizinkan atau tidak diizinkan oleh pengguna yang telah terautentikasi. Dalam istilah sederhana, ini adalah tentang memberikan atau menolak akses pengguna ke sumber daya atau tindakan tertentu dalam aplikasi.
-    Autentikasi dan otorisasi sangat penting untuk menjaga keamanan aplikasi web. Autentikasi memastikan bahwa hanya pengguna yang sah yang dapat mengakses aplikasi, sementara otorisasi memastikan bahwa pengguna hanya dapat melakukan tindakan atau mengakses data yang sesuai dengan peran atau izin mereka.
-4. *Cookies*<br>*Cookies* adalah sejumlah kecil informasi dikirim oleh server web ke peramban kemudian dikirim kembali oleh peramban pada permintaan halaman berikutnya. *Cookies* digunakan dalam konteks aplikasi web untuk menyimpan informasi tertentu yang perlu dipertahankan antara permintaan-permintaan yang dilakukan oleh pengguna ke server. Ini membantu dalam menjaga keadaan sesi pengguna, pelacakan preferensi, autentikasi, dan banyak hal lain dalam aplikasi web. Data sebuah *cookie* terdiri dari satu pasangan namaatau nilai yang dikirim dalam *header* permintaan HTTP `GET` atau `POST` klien.
-5. Penggunaan *Cookies*<br>
-7. Implementasi Daftar Periksa
+   * Pentingnya Autentikasi dan Otorisasi<br>Autentikasi dan otorisasi sangat penting untuk menjaga keamanan aplikasi web. Autentikasi memastikan bahwa hanya pengguna yang sah yang dapat mengakses aplikasi, sementara otorisasi memastikan bahwa pengguna hanya dapat melakukan tindakan atau mengakses data yang sesuai dengan peran atau izin mereka.
+3. *Cookies*<br>*Cookies* adalah sejumlah kecil informasi dikirim oleh server web ke peramban kemudian dikirim kembali oleh peramban pada permintaan halaman berikutnya. *Cookies* digunakan dalam konteks aplikasi web untuk menyimpan informasi tertentu yang perlu dipertahankan antara permintaan-permintaan yang dilakukan oleh pengguna ke server. Ini membantu dalam menjaga keadaan sesi pengguna, pelacakan preferensi, autentikasi, dan banyak hal lain dalam aplikasi web. Data sebuah *cookie* terdiri dari satu pasangan namaatau nilai yang dikirim dalam *header* permintaan HTTP `GET` atau `POST` klien.
+4. Penggunaan *Cookies*<br>Penggunaan *cookies* dalam pengembangan web dapat aman jika dikelola dengan benar, namun ada beberapa risiko potensial yang harus diwaspadai.
+   * Keamanan Data<br>*Cookies* dapat digunakan untuk menyimpan informasi sensitif seperti token autentikasi atau data pengguna. Jika *cookies* ini tidak dienkripsi atau tidak diatur dengan benar, mereka bisa menjadi target potensial bagi penyerang untuk mencuri data pengguna.
+   * Pelacakan<br>*Cookies* sering digunakan untuk melacak perilaku pengguna secara daring. Ini dapat menciptakan masalah privasi jika tidak diatur dengan benar atau jika data yang dikumpulkan tidak dilindungi.
+   * Kebocoran Data<br>Jika *cookies* mengandung data yang terlalu banyak atau terlalu rinci, *cookies* bisa menjadi risiko kebocoran data jika terjadi pelanggaran keamanan.
+6. Implementasi Daftar Periksa
    * Mengimplementasi Fungsi Pendaftaran, Masuk, dan Keluar
      * Membuat Fungsi Pendaftaran<br>Menjalankan lingkungan virtual kemudian mengimpor beberapa pustaka pada berkas `views.py` di subdirektori `main` dengan kode berikut.
        ```python
