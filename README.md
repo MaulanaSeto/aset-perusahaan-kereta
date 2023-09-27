@@ -265,7 +265,8 @@
        path('logout/', logout_user, name='logout'),
        ...
        ```
-   * Membuat Akun
+   * Membuat Akun<br>[Akun 1](https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Akun%201.png)
+     [Akun 2](https://github.com/MaulanaSeto/aset-perusahaan-kereta/blob/master/Akun%202.png)
    * Menghubungkan Model `Product` dengan `User`<br>Pertama, mengimpor pustaka pada berkas `models.py` di subdirektori `main` dengan kode berikut.
      ```python
      from django.contrib.auth.models import User
