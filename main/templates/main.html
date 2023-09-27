@@ -11,10 +11,11 @@
 
 <table>
     <tr>
+        <th>No.</th>
         <th>Jenis</th>
         <th>Nama</th>
-        <th>Jumlah</th>
         <th>Pemilik</th>
+        <th>Jumlah</th>
         <th>Tanggal Ditambahkan</th>
         <th>Deskripsi</th>
     </tr>
@@ -23,21 +24,43 @@
 
     {% for product in products %}
         <tr>
+            <td>{{forloop.counter}}</td>
             <td>{{product.type}}</td>
             <td>{{product.name}}</td>
-            <td>{{product.amount}}</td>
             <td>{{product.owner}}</td>
+            <td>
+                <span>{{product.amount}}</span>
+                <div>
+                    <a href="{% url 'main:increase_product_amount' product.id %}">
+                        <button>Tambah</button>
+                    </a>
+                    <a href="{% url 'main:decrease_product_amount' product.id %}">
+                        <button>Kurangi</button>
+                    </a>
+                </div>
+            </td>
             <td>{{product.date_added}}</td>
             <td>{{product.description}}</td>
+            <td>
+                <a href="{% url 'main:delete_product' product.id %}">
+                    <button>Hapus</button>
+                </a>
+            </td>
         </tr>
     {% endfor %}
 </table>
 
 <br />
 
+<h5>Sesi terakhir masuk: {{last_login}}</h5>
 <a href="{% url 'main:create_product' %}">
     <button>
-        Add New Product
+        Tambah Produk
     </button>
+    <a href="{% url 'main:logout' %}">
+        <button>
+            Keluar
+        </button>
+    </a>
 </a>
 {% endblock content %}

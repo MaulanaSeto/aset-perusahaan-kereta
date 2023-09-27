@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <title>Masuk</title>
+{% endblock meta %}
+
+{% block content %}
+
+<div class = "login">
+    <h1>Masuk</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>Nama Pengguna: </td>
+                <td><input type="text" name="username" placeholder="Nama Pengguna" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>Kata Sandi: </td>
+                <td><input type="password" name="password" placeholder="Kata Sandi" class="form-control"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input class="btn login_btn" type="submit" value="Masuk"></td>
+            </tr>
+        </table>
+    </form>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}     
+        
+    Belum memiliki akun? Daftar <a href="{% url 'main:register' %}">di sini</a>!
+
+</div>
+
+{% endblock content %}
