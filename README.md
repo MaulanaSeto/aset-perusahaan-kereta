@@ -283,20 +283,20 @@
      Ketiga, memperbarui kode fungsi `create_product` pada berkas `views.py` di subdirektori `main` menjadi kode berikut.
      ```python
      def create_product(request):
-     form = ProductForm(request.POST or None)
-     if form.is_valid() and request.method == "POST":
-         product = form.save(commit=False)
-         product.user = request.user
-         product.save()
-         return HttpResponseRedirect(reverse('main:show_main'))
+         form = ProductForm(request.POST or None)
+         if form.is_valid() and request.method == "POST":
+             product = form.save(commit=False)
+             product.user = request.user
+             product.save()
+             return HttpResponseRedirect(reverse('main:show_main'))
      ...
      ```
      Terakhir, memperbarui kode fungsi `show_main` menjadi kode berikut.
      ```python
      def show_main(request):
-     products = Product.objects.filter(user=request.user)
-     context = {
-         'name': request.user.username,
+         products = Product.objects.filter(user=request.user)
+         context = {
+             'name': request.user.username,
      ...
      ```
    * Menampilkan Detail Informasi Pengguna dan Menerapkan *Cookies*<br>Pertama, mengimpor beberapa pustaka pada berkas `views.py` di subdirektori `main` dengan kode berikut.
@@ -304,4 +304,34 @@
      import datetime
      from django.http import HttpResponseRedirect
      from django.urls import reverse
+     ```
+     Kedua, memperbarui kode fungsi `login_user`pada blok `if user not None` menjadi kode berikut.
+     ```python
+     ...
+     if user is not None:
+         login(request, user)
+         response = HttpResponseRedirect(reverse("main:show_main")) 
+         response.set_cookie('last_login', str(datetime.datetime.now()))
+         return response
+     ...
+     ```
+     Ketiga, menambahkan isi *dictionary* variabel `context` padafungsi `show_main` dengan kode berikut.
+     ```python
+     ...
+     'last_login': request.COOKIES['last_login'],
+     ...
+     ```
+     Keempat, memperbarui kode fungsi `logout_user` menjadi kode berikut.
+     ```python
+     def logout_user(request):
+         logout(request)
+         response = HttpResponseRedirect(reverse('main:login'))
+         response.delete_cookie('last_login')
+         return response
+     ```
+     Terakhir, menambah kode berikut ke dalam berkas `main.html` pada folder `templates` di subdirektori 'main` dengan kode berikut.
+     ```html
+     ...
+     <h5>Sesi terakhir masuk: {{last_login}}</h5>
+     ...
      ```
