@@ -409,7 +409,7 @@
    * `<!DOCTYPE>`<br>Mendefinisikan jenis dokumen dan versi HTML yang digunakan.
    * `<html>`<br>Menandai awal dan akhir berkas HTML.
    * `<head>`<br>Berisi informasi meta, tautan ke berkas eksternal, atau skrip JavaScript yang mendefinisikan halaman web.
-   * wedwed`<title>`<br>Menentukan judul halaman web yang ditampilkan di bilah judul peramban.
+   * `<title>`<br>Menentukan judul halaman web yang ditampilkan di bilah judul peramban.
    * `<meta>`<br>Memberikan metadata tentang dokumen.
    * `<link>`<br>Menghubungkan dokumen dengan sumber daya eksternal seperti berkas CSS.
    * `<style>`<br>Mendefinisikan gaya CSS dalam berkas HTML.
@@ -432,5 +432,5 @@
      * Memiliki berkas CSS yang lebih besar dibandingkan dengan *Tailwind* karena termasuk banyak komponen yang telah didefinisikan.
      * Sering kali menghasilkan tampilan yang lebih konsisten di seluruh proyek karena menggunakan komponen yang telah didefinisikan.
      * Memiliki pembelajaran yang lebih cepat untuk pemula karena dapat mulai dengan komponen yang telah didefinisikan.
-   * Simpulan<br>*Tailwind* dapat digunakan jika membutuhkan fleksibilitas yang tinggi, menginginkan desain yang unik, membutuhkan kinerja yang lebih baik, dan sudah memahami dasar-dasar CSS; sedangkan *Bootstrap* dapat digunakan jika membutuhkan solusi yang mudah dan cepat, membutuhkan dokumentasi lengkap, sedang bekerja dalam proyek besar, dan menginginkan dukungan lintas peramban yang kuat.
+   * Simpulan<br>*Tailwind* dapat digunakan jika membutuhkan fleksibilitas yang tinggi, menginginkan desain yang unik, membutuhkan kinerja yang lebih baik, dan sudah memahami dasar-dasar CSS; sedangkan *Bootstrap* dapat digunakan jika membutuhkan solusi yang mudah dan cepat, membutuhkan dokumentasi lengkap, sedang bekerja dalam proyek besar, serta menginginkan dukungan lintas peramban yang kuat.
 6. Implementasi Daftar Periksa
