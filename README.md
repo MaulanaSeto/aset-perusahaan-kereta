@@ -400,3 +400,37 @@
      </td>
      ...
      ```
+# Tugas 5
+1. Manfaat *Selector*
+   * *Element Selector*<br>*Elemen Selector* bermanfaat untuk menerapkan suatu properti pada elemen-elemen yang sama.
+   * *ID Selector*<br>*ID Selector* bermanfaat untuk menerapkan suatu properti ke elemen-elemen dalam cakupan ID yang sama.
+   * *Class Selector*<br>*Class Selector* bermanfaat untuk menerapkan suatu properti ke dalam kelompok kelas berkarakteristik sama.
+2. HTML5 *Tag*
+   * `<!DOCTYPE>`<br>Mendefinisikan jenis dokumen dan versi HTML yang digunakan.
+   * `<html>`<br>Menandai awal dan akhir berkas HTML.
+   * `<head>`<br>Berisi informasi meta, tautan ke berkas eksternal, atau skrip JavaScript yang mendefinisikan halaman web.
+   * wedwed`<title>`<br>Menentukan judul halaman web yang ditampilkan di bilah judul peramban.
+   * `<meta>`<br>Memberikan metadata tentang dokumen.
+   * `<link>`<br>Menghubungkan dokumen dengan sumber daya eksternal seperti berkas CSS.
+   * `<style>`<br>Mendefinisikan gaya CSS dalam berkas HTML.
+   * `<script>`<br>Menyematkan skrip JavaScript di dalam berkas HTML.
+   * `<body>`<br>Berisi konten utama dokumen HTML, seperti teks, gambar, dan elemen-elemen lainnya.
+   * `<p>`<br>Menandai paragraf teks.
+   * `<a>`<br>Membuat tautan *hyperlink* ke halaman web atau sumber daya lainnya.
+   * `<img>`<br>Menyisipkan gambar ke dalam berkas.
+3. Perbedaan *Margin* dan *Padding*
+   * *Margin*<br>*Margin* adalah ruang di luar batas elemen (garis tepi elemen) yang mengontrol jarak antara elemen dengan elemen-elemen lain.
+   * *Padding*<br>*Padding* adalah ruang di antara batas elemen (garis tepi elemen) dan konten yang mengontrol jarak antara konten elemen dan batas elemen.
+4. Perbedaan Kerangka Kerja CSS *Tailwind* dan *Bootstrap*
+   * *Tailwind*
+     * Membangun tampilan dengan menggabungkan kelas-kelas utilitas yang telah didefinisikan sebelumnya.
+     * Memiliki berkas CSS yang lebih kecil sedikit dibandingkan Bootstrap dan hanya akan memuat kelas-kelas utilitas yang ada
+     * Memberikan fleksibilitas dan adaptabilitas tinggi terhadap proyek.
+     * Memiliki pembelajaran yang lebih curam karena memerlukan pemahaman terhadap kelas-kelas utilitas yang tersedia dan bagaimana menggabungkannya untuk mencapai tampilan yang diinginkan.
+   * *Bootstrap*
+     * Menggunakan gaya dan komponen yang telah didefinisikan, yang memiliki tampilan yang sudah jadi dan dapat digunakan secara langsung.
+     * Memiliki berkas CSS yang lebih besar dibandingkan dengan *Tailwind* karena termasuk banyak komponen yang telah didefinisikan.
+     * Sering kali menghasilkan tampilan yang lebih konsisten di seluruh proyek karena menggunakan komponen yang telah didefinisikan.
+     * Memiliki pembelajaran yang lebih cepat untuk pemula karena dapat mulai dengan komponen yang telah didefinisikan.
+   * Simpulan<br>*Tailwind* dapat digunakan jika membutuhkan fleksibilitas yang tinggi, menginginkan desain yang unik, membutuhkan kinerja yang lebih baik, dan sudah memahami dasar-dasar CSS; sedangkan *Bootstrap* dapat digunakan jika membutuhkan solusi yang mudah dan cepat, membutuhkan dokumentasi lengkap, sedang bekerja dalam proyek besar, dan menginginkan dukungan lintas peramban yang kuat.
+6. Implementasi Daftar Periksa
