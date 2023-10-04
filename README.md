@@ -433,4 +433,22 @@
      * Sering kali menghasilkan tampilan yang lebih konsisten di seluruh proyek karena menggunakan komponen yang telah didefinisikan.
      * Memiliki pembelajaran yang lebih cepat untuk pemula karena dapat mulai dengan komponen yang telah didefinisikan.
    * Simpulan<br>*Tailwind* dapat digunakan jika membutuhkan fleksibilitas yang tinggi, menginginkan desain yang unik, membutuhkan kinerja yang lebih baik, dan sudah memahami dasar-dasar CSS; sedangkan *Bootstrap* dapat digunakan jika membutuhkan solusi yang mudah dan cepat, membutuhkan dokumentasi lengkap, sedang bekerja dalam proyek besar, serta menginginkan dukungan lintas peramban yang kuat.
-6. Implementasi Daftar Periksa
+5. Implementasi Daftar Periksa
+   * Mmbuat Folder<br>Pada subfolder `main` membuat folder `static` dan membuat folder `css` di dalam folder `static`.
+   * Membuat Berkas CSS<br>Membuat berkas CSS di folder `css` untuk setiap berkas HTML di folder `templates` pada subdirektori `main`.
+   * Merutekan Folder `static`<br>Mengimpor pustaka pada berkas `settings.py` di subdirektori `aset_perusahaan_kereta` sesuai kode berikut.
+     ```python
+     import os
+     ```
+     Lalu menambahkan variabel `STATIC_ROOT` di atas variabel `STATIC_URL` dengan kode berikut.
+     ```python
+     STATIC_ROOT = os.path.join(BASE_DIR, 'main/static')
+     ```
+   * Mengumpulkan Semua Berkas Statis ke Suatu Direktori<br>Menjalankan lingkungan virtual lalu menjalankan perintah prompt berkut.
+     ```bash
+     python manage.py collectstatic
+     ```
+   * Menghubungkan Berkas HTML ke CSS<br>Menambahkan kode `{% load static %}` ke setiap berkas HTML seletah kode `{% extends 'base.html' %}` lalu menambahkan rute ke berkas CSS masing-masing dengan kode berikut.
+     ```html
+     <link rel="stylesheet" href="{% static 'css/[nama-file].css'%}"> 
+     ```
