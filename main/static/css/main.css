@@ -42,16 +42,15 @@ li {
 }
 
 table {
-    background-color: #d6daec;
-    border-radius: 8px;
     border-collapse: collapse;
     margin: 0 auto;
-    width: 100%;
+    width: 85%;
+    border-radius: 8px;
 }
 
 td,
 th {
-    padding: 5 px 7 px;
+    padding: 2px;
     box-sizing: border-box;
     font-family: Helvetica;
 }
@@ -68,12 +67,13 @@ th,
 
 .judul-tabel {
     color: #031638;
-    font-size: 18px;
+    font-size: 16px;
+    background-color: #d6daec33;
 }
 
 .isi-tabel {
     color: #20263a;
-    font-size: 13;
+    font-size: 12px;
 }
 
 tr {
@@ -109,7 +109,7 @@ tr::after {
     display: inline-block;
     padding: 0px 1px;
     color: #595b61;
-    font-size: 11px;
+    font-size: 10px;
     transition: transform 0.3s ease;
 }
 
@@ -135,7 +135,7 @@ tr::after {
     display: inline-block;
     padding: 0px 1px;
     color: #595b61;
-    font-size: 13px;
+    font-size: 12px;
     transition: transform 0.3s ease;
 }
 
@@ -215,16 +215,24 @@ tr::after {
     transform: scale(1.1);
 }
 
-.produk-pertama {
-    background: #b2c5f8;
-    border-top-right-radius: 8px;
-    border-top-left-radius: 8px;
+.isi-tabel {
+    background: #d6daec33;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.isi-tabel:hover {
+    transform: scale(1.1);
+    background-color: #d6daecb9;
 }
 
 .produk-terakhir {
-    background: #b2c5f8;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    background: #d6daecb9;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.produk-terakhir:hover {
+    transform: scale(1.1);
+    background-color: #91e6eccc;
 }
 
 .pesan-kosong {
