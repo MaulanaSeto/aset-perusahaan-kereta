@@ -1,0 +1,244 @@
+#header {
+    background-color: #1d58cf;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body {
+    background-color: #8aa9ff;
+    margin: 0px;
+    padding: 0px;
+}
+
+#main {
+    margin: 20px;
+}
+
+h1 {
+    color: #d6eff9;
+    font-family: Helvetica;
+    margin-left: 20px;
+}
+
+.header-list {
+    color: #d6eff9;
+    font-family: Helvetica;
+}
+
+li {
+    color: #d6eff9;
+    font-family: Helvetica;
+    font-weight: bold;
+    list-style: none;
+    margin-right: 30px;
+    font-size: 14px;
+}
+
+.isi-header-list {
+    color: #d6eff9;
+    font-family: Helvetica;
+    font-weight: bold;
+}
+
+table {
+    background-color: #d6daec;
+    border-radius: 8px;
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+}
+
+td,
+th {
+    padding: 5 px 7 px;
+    box-sizing: border-box;
+    font-family: Helvetica;
+}
+
+th,
+.no,
+.jenis,
+.pemilik,
+.jumlah,
+.tanggal,
+.tombol-aksi {
+    text-align: center;
+}
+
+.judul-tabel {
+    color: #031638;
+    font-size: 18px;
+}
+
+.isi-tabel {
+    color: #20263a;
+    font-size: 13;
+}
+
+tr {
+    position: relative;
+}
+
+tr::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 97%;
+    border-bottom: 1px solid #5b627775;
+    margin-bottom: 0px;
+}
+
+.tombol-jumlah a {
+    text-decoration: none;
+}
+
+.tombol-jumlah {
+    gap: 0px;
+}
+
+.tombol-jumlah button {
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0;
+    border: none;
+    padding: 0;
+    display: inline-block;
+    padding: 0px 1px;
+    color: #595b61;
+    font-size: 11px;
+    transition: transform 0.3s ease;
+}
+
+.tombol-jumlah button:hover {
+    transform: scale(1.1);
+    color: #1d58cf;
+}
+
+.tombol-aksi {
+    gap: 0px
+}
+
+.tombol-aksi a {
+    text-decoration: none;
+}
+
+.tombol-aksi button {
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0;
+    border: none;
+    padding: 0;
+    display: inline-block;
+    padding: 0px 1px;
+    color: #595b61;
+    font-size: 13px;
+    transition: transform 0.3s ease;
+}
+
+.tombol-aksi button:hover {
+    transform: scale(1.1);
+    color: #1d58cf;
+}
+
+.tombol-akhir {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.sesi {
+    font-size: 13px;
+    font-family: Helvetica;
+    color: #10398b;
+}
+
+.tombol-tambah {
+    margin: 1px;
+    background-color: #1d58cf;
+    padding: 13px 13px;
+    border-radius: 8px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.tombol-tambah button {
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0px;
+    border: none;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 800;
+    color: #d6daec;
+    transition: transform 0.3s ease;
+}
+
+.tombol-tambah button:hover {
+    transform: scale(1.1);
+}
+
+.tombol-tambah:hover {
+    transform: scale(1.1);
+}
+
+.tombol-keluar {
+    margin: 1px;
+    background-color: #cf1d1d;
+    padding: 13px;
+    border-radius: 8px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.tombol-keluar button {
+    background-color: transparent;
+    cursor: pointer;
+    margin: 0px;
+    border: none;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 800;
+    color: #d6daec;
+    transition: transform 0.3s ease;
+}
+
+.tombol-keluar button:hover {
+    transform: scale(1.1);
+}
+
+.tombol-keluar:hover {
+    transform: scale(1.1);
+}
+
+.produk-pertama {
+    background: #b2c5f8;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+.produk-terakhir {
+    background: #b2c5f8;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.pesan-kosong {
+    background-color: #d6daec;
+    border-radius: 8px;
+    margin: 0 auto;
+    width: 100%;
+    font-size: 13px;
+    font-family: Helvetica;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    color: #031638;
+    font-size: 18px;
+    font-weight: 550;
+}

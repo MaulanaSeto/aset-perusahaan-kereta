@@ -33,8 +33,17 @@ def create_product(request):
     context = {'form': form}
     return render(request, "create_product.html", context)
 
-def delete_product(request, product_id):
-    product = get_object_or_404(Product, id=product_id, user=request.user)
+def edit_product(request, id):
+    product = Product.objects.get(pk = id)
+    form = ProductForm(request.POST or None, instance=product)
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+    context = {'form': form}
+    return render(request, "edit_product.html", context)
+
+def delete_product(request, id):
+    product = Product.objects.get(pk=id)
     product.delete()
     return HttpResponseRedirect(reverse('main:show_main'))
 
@@ -86,14 +95,14 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
-def increase_product_amount(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
+def increase_product_amount(request, id):
+    product = Product.objects.get(pk=id)
     product.amount += 1
     product.save()
     return redirect('main:show_main')
 
-def decrease_product_amount(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
+def decrease_product_amount(request, id):
+    product = Product.objects.get(pk=id)
     if product.amount > 0:
         product.amount -= 1
         product.save()

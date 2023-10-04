@@ -1,0 +1,90 @@
+#header {
+    background-color: #1d58cf;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body {
+    background-color: #8aa9ff;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    color: #d6eff9;
+    font-family: Helvetica;
+    margin-left: 20px;
+}
+
+.login {
+    background: #d6daec;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-family: Helvetica;
+    height: auto;
+    width: 25%;
+    margin: 150px auto 0px auto;
+}
+
+.form-control {
+    font-family: Helvetica;
+    background: #d6daec;
+}
+
+.gagal-login {
+    list-style: none;
+    background: #cf1d1d42;
+    color: #cf1d1d;
+    padding: 2px 4px;
+    margin-left: -34px;
+    margin-right: 6px;
+    text-align: justify;
+    border-radius: 4px;
+}
+
+.login_btn {
+    background-color: #1d58cf;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 1px;
+    border: none;
+    display: inline-block;
+    padding: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #d6daec;
+    transition: transform 0.3s ease;
+    border: 3px solid #1d58cf;
+}
+
+.login_btn:hover {
+    transform: scale(1.1);
+}
+
+.pesan-daftar {
+    font-family: Helvetica;
+    padding: 4px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.tombol-daftar button {
+    border-radius: 4px;
+    border: 3px solid #1d58cf;
+    background: transparent;
+    color: #1d58cf;
+    font-family: Helvetica;
+    font-weight: bold;
+    padding: 2px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.tombol-daftar button:hover {
+    transform: scale(1.1);
+}

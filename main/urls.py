@@ -12,7 +12,8 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
-    path('delete_product/<int:product_id>/', delete_product, name='delete_product'),
-    path('product/increase/<int:product_id>/', increase_product_amount, name='increase_product_amount'),
-    path('product/decrease/<int:product_id>/', decrease_product_amount, name='decrease_product_amount'),
+    path('edit-product/<int:id>', edit_product, name='edit_product'),
+    path('delete_product/<int:id>/', delete_product, name='delete_product'),
+    path('product/increase/<int:id>/', increase_product_amount, name='increase_product_amount'),
+    path('product/decrease/<int:id>/', decrease_product_amount, name='decrease_product_amount'),
 ]

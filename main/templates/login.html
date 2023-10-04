@@ -1,22 +1,20 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<link rel="stylesheet" href="{% static 'css/login.css'%}"> {% endblock meta %} {% block content %}
+<div id="header">
+    <h1>HALAMAN ASET</h1>
+</div>
 
-{% block meta %}
-    <title>Masuk</title>
-{% endblock meta %}
-
-{% block content %}
-
-<div class = "login">
-    <h1>Masuk</h1>
+<div class="login">
+    <h2 style="color: #1d58cf; font-family: Helvetica; font-weight: bold; font-size: x-large;">Masuk</h2>
     <form method="POST" action="">
         {% csrf_token %}
         <table>
             <tr>
-                <td>Nama Pengguna: </td>
+                <td style="color: #031638; font-family: Helvetica; font-weight: bold; font-size: medium;">Nama Pengguna: </td>
                 <td><input type="text" name="username" placeholder="Nama Pengguna" class="form-control"></td>
             </tr>
             <tr>
-                <td>Kata Sandi: </td>
+                <td style="color: #031638; font-family: Helvetica; font-weight: bold; font-size: medium;">Kata Sandi: </td>
                 <td><input type="password" name="password" placeholder="Kata Sandi" class="form-control"></td>
             </tr>
             <tr>
@@ -27,14 +25,17 @@
     </form>
 
     {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Belum memiliki akun? Daftar <a href="{% url 'main:register' %}">di sini</a>!
+    <ul>
+        {% for message in messages %}
+        <li class="gagal-login">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h class="pesan-daftar">Belum memiliki akun?
+        <a class="tombol-daftar" href="{% url 'main:register' %}">
+            <button>Daftar</button>
+        </a>
+        <h>
 
 </div>
 

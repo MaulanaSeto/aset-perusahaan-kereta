@@ -1,66 +1,79 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% load static %} {% block meta %}
+<link rel="stylesheet" href="{% static 'css/main.css'%}"> {% endblock meta %} {% block content %}
+<div id="header">
+    <h1>HALAMAN ASET</h1>
+    <div class="header-list">
+        <ul>
+            <li>Nama: <span class="isi-header-list">{{name}}</li>
+            <li>Kelas: <span class="isi-header-list">{{class}}</span></li>
+        </ul>
+    </div>
+</div>
 
-{% block content %}
-    <h1>Halaman Aset</h1>
+<div id="main">
+    {% if products %}
+    <table>
+        <tr class="judul-tabel">
+            <th>No.</th>
+            <th>Jenis</th>
+            <th>Nama</th>
+            <th>Pemilik</th>
+            <th>Jumlah</th>
+            <th>Tanggal Ditambahkan</th>
+            <th>Deskripsi</th>
+            <th>Aksi</th>
+        </tr>
 
-    <h5>Nama:</h5>
-    <p>{{name}}</p>
-
-    <h5>Kelas:</h5>
-    <p>{{class}}</p>
-
-<table>
-    <tr>
-        <th>No.</th>
-        <th>Jenis</th>
-        <th>Nama</th>
-        <th>Pemilik</th>
-        <th>Jumlah</th>
-        <th>Tanggal Ditambahkan</th>
-        <th>Deskripsi</th>
-    </tr>
-
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-
-    {% for product in products %}
-        <tr>
-            <td>{{forloop.counter}}</td>
-            <td>{{product.type}}</td>
-            <td>{{product.name}}</td>
-            <td>{{product.owner}}</td>
-            <td>
+        {% for product in products %}
+        <tr class="isi-tabel {% if forloop.first %}produk-pertama{% endif %} {% if forloop.last %}produk-terakhir{% endif %}">
+            <td class="no">{{forloop.counter}}</td>
+            <td class="jenis">{{product.type}}</td>
+            <td class="nama">{{product.name}}</td>
+            <td class="pemilik">{{product.owner}}</td>
+            <td class="jumlah">
                 <span>{{product.amount}}</span>
-                <div>
+                <div class="tombol-jumlah">
                     <a href="{% url 'main:increase_product_amount' product.id %}">
                         <button>Tambah</button>
                     </a>
+                    <h style="font-size: 11px; color: #20263a">|</h>
                     <a href="{% url 'main:decrease_product_amount' product.id %}">
                         <button>Kurangi</button>
                     </a>
                 </div>
             </td>
-            <td>{{product.date_added}}</td>
-            <td>{{product.description}}</td>
-            <td>
-                <a href="{% url 'main:delete_product' product.id %}">
-                    <button>Hapus</button>
-                </a>
+            <td class="tanggal">{{product.date_added}}</td>
+            <td class="deskripsi">{{product.description}}</td>
+            <td class="tombol-aksi">
+                <div class="tombol-aksi">
+                    <a href="{% url 'main:edit_product' product.pk %}">
+                        <button>Ubah</button>
+                    </a>
+                    <h style="font-size: 13px; color: #20263a">|</h>
+                    <a href="{% url 'main:delete_product' product.id %}">
+                        <button>Hapus</button>
+                    </a>
+                </div>
             </td>
         </tr>
-    {% endfor %}
-</table>
-
-<br />
-
-<h5>Sesi terakhir masuk: {{last_login}}</h5>
-<a href="{% url 'main:create_product' %}">
-    <button>
-        Tambah Produk
-    </button>
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Keluar
-        </button>
-    </a>
-</a>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h class="pesan-kosong">Tidak Ada Aset</h>
+    {% endif %}
+    <br />
+    <div class="tombol-akhir">
+        <a class="tombol-tambah" href="{% url 'main:create_product' %}">
+            <button>
+                Tambah Produk
+            </button>
+        </a>
+        <h5 class="sesi">Sesi terakhir masuk: {{last_login}}</h5>
+        <a class="tombol-keluar" href="{% url 'main:logout' %}">
+            <button>
+                Keluar
+            </button>
+        </a>
+    </div>
+</div>
 {% endblock content %}

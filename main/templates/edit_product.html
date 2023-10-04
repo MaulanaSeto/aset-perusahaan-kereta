@@ -1,0 +1,53 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<h1>Ubah Produk</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        <tr>
+            <td>Jenis:</td>
+            <td>{{form.type}}</td>
+        </tr>
+        <tr>
+            <td>Nama:</td>
+            <td>{{form.name}}</td>
+        </tr>
+        <tr>
+            <td>Pemilik</td>
+            <td>{{form.owner}}</td>
+        </tr>
+        <tr>
+            <td>Jumlah:</td>
+            <td>{{form.amount}}</td>
+        </tr>
+        {% if form.amount.errors %}
+        <tr>
+            <td></td>
+            <td>
+                <ul class="errorlist">
+                    {% for error in form.amount.errors %}
+                    <li><span class="error">{{error}}</span></li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td>Deskripsi:</td>
+            <td>{{form.description}}</td>
+        </tr>
+    </table>
+    <tr>
+        <td></td>
+        <td>
+            <input type="submit" value="Simpan"/>
+        </td>
+        <a href="{% url 'main:show_main' %}">
+            <button type="button">Kembali</button>
+        </a>
+    </tr>
+</form>
+
+{% endblock %}
