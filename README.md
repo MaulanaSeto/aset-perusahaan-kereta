@@ -450,5 +450,5 @@
      ```
    * Menghubungkan Berkas HTML ke CSS<br>Menambahkan kode `{% load static %}` ke setiap berkas HTML seletah kode `{% extends 'base.html' %}` lalu menambahkan rute ke berkas CSS masing-masing dengan kode berikut.
      ```html
-     <link rel="stylesheet" href="{% static 'css/[nama-file].css'%}"> 
+     <link rel="stylesheet" href="{% static 'css/[nama-berkas].css'%}"> 
      ```
