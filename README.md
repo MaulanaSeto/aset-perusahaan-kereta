@@ -452,3 +452,11 @@
      ```html
      <link rel="stylesheet" href="{% static 'css/[nama-berkas].css'%}"> 
      ```
+# Tugas 6
+1. Perbedaan Pemrograman Sinkron dan Asinkron
+   * Pemrograman Sinkron<br>Pada pemrograman sinkron, tugas-tugas dieksekusi secara berurutan satu per satu. Artinya, tugas pertama harus selesai sebelum tugas kedua dimulai, dan seterusnya. Ketika tugas I/O dilakukan, program akan terblokir atau "menggantung" sampai tugas I/O tersebut selesai.
+   * Pemrograman Asinkron<br>Pada pemrograman asinkron, tugas-tugas dapat dilakukan secara bersamaan atau non-blokir. Artinya, program tidak perlu menunggu tugas I/O selesai sebelum melanjutkan tugas lain. Tugas I/O yang memakan waktu lama dapat dipindahkan ke latar belakang dan program dapat melanjutkan eksekusi tugas lain tanpa harus menunggu.
+2. Paradigma *Event-Driven Programming*<br>*Event-driven programming* adalah paradigma pemrograman dengan alur eksekusi program ditentukan oleh kejadian atau peristiwa yang terjadi, bukan oleh urutan instruksi yang tertulis dalam kode. Program merespons peristiwa atau sinyal eksternal yang terjadi di lingkungan eksekusi, seperti interaksi pengguna (seperti klik tetikus atau masukan *keyboard*), sinyal dari perangkat keras, atau data yang diterima melalui jaringan. Pada tugas ini, metode `addProduct` diimplementasikan sebagai metode *event-driven* yang akan dieksekusi jika tombol `Tambah` di `Tambah Produk (AJAX)` diklik.
+3. Penerapan Pemrograman Asinkron pada AJAX
+6. *Fetch API* dan *jQuery*
+7. Implementasi Daftar Periksa
