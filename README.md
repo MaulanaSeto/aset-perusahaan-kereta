@@ -571,7 +571,37 @@
            </div>
        </div>
        ```
-     * Membuat Fungsi *View*<br>Menambahkan fungsi `create_ajax` dan `delete_ajax` pada berkas `views.py`di subdirektori `main` dengan kode berikut.
+     * Membuat Fungsi *View*<br>Pertama, menambahkan isi blok `script` pada berkas `main.html` pada folder `templates` di subdirektori `main` dengan kode berikut.
+       ```javascript
+       function addProduct() {
+           fetch("{% url 'main:create_ajax' %}", {
+               method: "POST",
+               body: new FormData(document.querySelector('#form'))
+           }).then(refreshProducts)
+           document.getElementById("form").reset()
+            return false
+       }
+       
+       async function deleteProduct(id) {
+           const confirmation = confirm("Apakah Anda yakin ingin menghapus produk tersebut?");
+           if (confirmation) {
+               await fetch(`{% url 'main:delete_ajax' %}?id=${id}`, {
+                  method: "DELETE",
+               });
+           refreshProducts();
+           }
+       }
+    async function deleteProduct(id) {
+        const confirmation = confirm("Apakah Anda yakin ingin menghapus produk tersebut?");
+        if (confirmation) {
+            await fetch(`{% url 'main:delete_ajax' %}?id=${id}`, {
+                method: "DELETE",
+            });
+            refreshProducts();
+        }
+    }
+       ```
+       Kedua, menambahkan fungsi `create_ajax` dan `delete_ajax` pada berkas `views.py`di subdirektori `main` dengan kode berikut.
        ```python
        @csrf_exempt
        def create_ajax(request):
