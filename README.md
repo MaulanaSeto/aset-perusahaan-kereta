@@ -591,15 +591,6 @@
            refreshProducts();
            }
        }
-    async function deleteProduct(id) {
-        const confirmation = confirm("Apakah Anda yakin ingin menghapus produk tersebut?");
-        if (confirmation) {
-            await fetch(`{% url 'main:delete_ajax' %}?id=${id}`, {
-                method: "DELETE",
-            });
-            refreshProducts();
-        }
-    }
        ```
        Kedua, menambahkan fungsi `create_ajax` dan `delete_ajax` pada berkas `views.py`di subdirektori `main` dengan kode berikut.
        ```python
