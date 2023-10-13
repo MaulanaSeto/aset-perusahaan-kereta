@@ -383,7 +383,7 @@
          product.delete()
          return HttpResponseRedirect(reverse('main:show_main'))
      ```
-     Kedua, merutekan fungsi tersebut ke dalam `urlpatterns` pada berkas `urls,py` di subdirektori `main` dengan kode berikut.
+     Kedua, merutekan fungsi tersebut ke dalam `urlpatterns` pada berkas `urls.py` di subdirektori `main` dengan kode berikut.
      ```python
      ...
      path('delete_product/<int:product_id>/', delete_product, name='delete_product'),
@@ -458,5 +458,162 @@
    * Pemrograman Asinkron<br>Pada pemrograman asinkron, tugas-tugas dapat dilakukan secara bersamaan atau non-blokir. Artinya, program tidak perlu menunggu tugas I/O selesai sebelum melanjutkan tugas lain. Tugas I/O yang memakan waktu lama dapat dipindahkan ke latar belakang dan program dapat melanjutkan eksekusi tugas lain tanpa harus menunggu.
 2. Paradigma *Event-Driven Programming*<br>*Event-driven programming* adalah paradigma pemrograman dengan alur eksekusi program ditentukan oleh kejadian atau peristiwa yang terjadi, bukan oleh urutan instruksi yang tertulis dalam kode. Program merespons peristiwa atau sinyal eksternal yang terjadi di lingkungan eksekusi, seperti interaksi pengguna (seperti klik tetikus atau masukan *keyboard*), sinyal dari perangkat keras, atau data yang diterima melalui jaringan. Pada tugas ini, metode `addProduct` diimplementasikan sebagai metode *event-driven* yang akan dieksekusi jika tombol `Tambah` di `Tambah Produk (AJAX)` diklik.
 3. Penerapan Pemrograman Asinkron pada AJAX
-6. *Fetch API* dan *jQuery*
-7. Implementasi Daftar Periksa
+   * XMLHttpRequest<br>XMLHttpRequest adalah objek JavaScript klasik yang digunakan untuk membuat koneksi ke server dan mengirimkan atau menerima data tanpa harus memuat ulang halaman web secara keseluruhan.
+   * Fetch API<br>Fetch API adalah standar modern untuk mengambil dan mengirim data menggunakan JavaScript. Ia menyediakan antarmuka yang lebih powerful dan fleksibel daripada XMLHttpRequest.
+   * *Async* dan *Await*<br>*Async* dan *Await* adalah fitur ES2017 yang memudahkan penanganan kode asinkron dengan cara yang lebih mirip dengan gaya sinkron. Dengan *Async* dan *Await*, kode asinkron dapat ditulis dengan tampilan yang lebih bersih dan mudah dimengerti.
+4. *Fetch API* dan *jQuery*
+   * Fetch API
+     * Modern dan Natif<br>Fetch API adalah standar modern yang sudah ada di peramban terbaru tanpa memerlukan pustaka eksternal. Ini membuatnya menjadi pilihan alami untuk proyek-proyek yang ingin menggunakan fitur terbaru dari JavaScript.
+     * *Promise-Biased*<br>Fetch API mengembalikan Promise yang memungkinkan penggunaan Async/Await untuk menangani kode asinkron dengan cara yang bersih dan mudah dimengerti.
+     * Lebih Ringan<br>Fetch API memiliki *overhead* yang lebih rendah dibandingkan dengan jQuery karena itu adalah bagian dari JavaScript natif.
+   * jQuery
+     * Mudah Digunakan<br>jQuery menyederhanakan sintaks AJAX dan menyediakan metode dan *event handling* yang konsisten di berbagai peramban. Ini membuatnya mudah digunakan terutama untuk pengembang yang baru belajar atau yang memerlukan solusi cepat.
+     * *Cross-Browser Compatibility*<br>jQuery dirancang untuk menangani perbedaan implementasi di berbagai peramban, memastikan konsistensi perilaku di seluruh kerangka kerja.
+     * Plugin Ekstnsif<br>jQuery memiliki banyak plugin yang memperluas fungsionalitasnya. jQuery memiliki berbagai fitur tambahan seperti animasi, manipulasi DOM, dan lain-lain.
+   * Simpulan<br>Secara umum, penggunaan Fetch API dalam pengembangan aplikasi web modern adalah pilihan yang baik karena ini merupakan standar modern dan memberikan fleksibilitas lebih besar.
+6. Implementasi Daftar Periksa
+   * AJAX GET
+     * Mengubah Kode Item<br>Pertama, mengosongkan blok `table` dan menambahkannya atribut pada berkas `main.html` pada folder `templates` di subdirektori `main` dengan kode berikut.
+       ```html
+       <table id="product_table"></table>
+       ```
+       Terakhir, membuat blok `script` dengan kode berikut.
+       ```html
+       <script>
+       async function refreshProducts() {
+           document.getElementById("product_table").innerHTML = ""
+           const products = await getProducts()
+           let htmlString = `<tr>
+               <th>Jenis</th>
+               <th>Nama</th>
+               <th>Pemilik</th>
+               <th>Jumlah</th>
+               <thTanggal Ditambahkan</th>
+               <th>Deskripsi</th>
+               <th>Aksi</th>
+           </tr>`
+           products.forEach((item) => {
+               htmlString += `\n<tr class="isi-tabel {% if forloop.last %}produk-terakhir{% endif %}">
+               <td class="jenis">${item.fields.type}</td>
+               <td class="nama">${item.fields.name}</td>
+               <td class="pemilik">${item.fields.owner}</td>
+               <td class="jumlah">${item.fields.amount}</td>
+               <td class="tanggal">${item.fields.date_added}</td>
+               <td class="deskripsi">${item.fields.description}</td>
+               <td class="hapus"><button onclick="deleteProduct(${item.pk})">Hapus</button></td>
+           </tr>`
+           })
+           document.getElementById("product_table").innerHTML = htmlString
+       }
+       refreshProducts()
+       ```
+     * Melakukan Pengembalian Item<br>Pertama, menambahkan fungsi `get_product_json` pada berkas `views.py`di subdirektori `main` dengan kode berikut.
+       ```python
+       def get_product_json(request):
+           product_item = Product.objects.all()
+           return HttpResponse(serializers.serialize('json', product_item))
+       ```
+       Kedua, menambahkan fungsi `getProducts` pada berkas `main.html` pada folder `templates` di subdirektori `main` dengan kode berikut.
+       ```html
+       async function getProducts() {
+           return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+       }
+       ```
+       Terakhir, merutekan fungsi tersebut ke dalam `urlpatterns` pada berkas `urls.py` di subdirektori `main` dengan kode berikut.
+       ```python
+       ...
+       path('get-product/', get_product_json, name='get_product_json'),
+       ...
+       ```
+   * AJAX POST
+     * Membuat Tombol Modal<br>Pertama, menambahkan tombol `Tambah Produk (AJAX)` di antara tombol `Tambah Produk` dan informasi sesi terakhir masuk pada berkas `main.html` pada folder `templates` di subdirektori `main` dengan kode berikut.
+       ```html
+       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah Produk (AJAX)</button>
+       ```
+       Terakhir, membuat modal dengan kode berikut.
+       ```html
+       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Produk</h1>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                   </div>
+                   <div class="modal-body">
+                       <form id="form" onsubmit="return false;">
+                           {% csrf_token %}
+                           <div class="mb-3">
+                               <label for="type" class="col-form-label">Jenis:</label>
+                               <input type="text" class="form-control" id="type" name="type"></input>
+                           </div>
+                           <div class="mb-3">
+                               <label for="name" class="col-form-label">Nama:</label>
+                               <input type="text" class="form-control" id="name" name="name"></input>
+                           </div>
+                           <div class="mb-3">
+                               <label for="owner" class="col-form-label">Pemilik:</label>
+                               <input type="text" class="form-control" id="owner" name="owner"></input>
+                           </div>
+                           <div class="mb-3">
+                               <label for="amount" class="col-form-label">Jumlah:</label>
+                               <input type="number" class="form-control" id="amount" name="amount"></input>
+                           </div>
+                           <div class="mb-3">
+                               <label for="description" class="col-form-label">Deskripsi:</label>
+                               <textarea class="form-control" id="description" name="description"></textarea>
+                           </div>
+                       </form>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Tambah</button>
+                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                   </div>
+               </div>
+           </div>
+       </div>
+       ```
+     * Membuat Fungsi *View*<br>Menambahkan fungsi `create_ajax` dan `delete_ajax` pada berkas `views.py`di subdirektori `main` dengan kode berikut.
+       ```python
+       @csrf_exempt
+       def create_ajax(request):
+           if request.method == 'POST':
+               type = request.POST.get("type")
+               name = request.POST.get("name")
+               owner = request.POST.get("owner")
+               amount = request.POST.get("amount")
+               description = request.POST.get("description")
+               user = request.user
+               new_product = Product(type=type, name=name, owner=owner, amount=amount, description=description, user=user)
+               new_product.save()
+               return HttpResponse(b"CREATED", status=201)
+           return HttpResponseNotFound()
+
+       @csrf_exempt
+       def delete_ajax(request):
+           if request.method == "DELETE":
+               product_id = request.GET.get("id")
+               try:
+                   product = Product.objects.get(pk=product_id, user=request.user)
+                   product.delete()
+                   return HttpResponse(status=204)
+               except Product.DoesNotExist:
+                   return HttpResponseNotFound()
+           return HttpResponseNotFound()
+       ```
+     * Membuat Jalur<br>Merutekan fungsi tersebut ke dalam `urlpatterns` pada berkas `urls.py` di subdirektori `main` dengan kode berikut.
+       ```python
+       ...
+       path('create-ajax/', create_ajax, name='create_ajax'),
+       path('delete_ajax/', delete_ajax, name='delete_ajax'),
+       ...
+       ```
+     * Menghubungkan Formulir dengan Jalur
+       Menambahkan kode berikut ke blok `script` pada berkas `main.html` pada folder `templates` di subdirektori `main`.
+       ```html
+       document.getElementById("button_add").onclick = addProduct
+       ```
+     * Melakukan *Refresh*
+   * Melakukan Perintah `collecstatic`<br>Menjalankan lingkungan virtual lalu menjalankan perintah prompt berkut.
+     ```bash
+     python manage.py collectstatic
+     ```
