@@ -12,7 +12,8 @@
 
 <div id="main">
     {% if products %}
-    <table>
+    <table id="product_table">
+        <!--
         <tr class="judul-tabel">
             <th>No.</th>
             <th>Jenis</th>
@@ -57,6 +58,7 @@
             </td>
         </tr>
         {% endfor %}
+    -->
     </table>
     {% else %}
     <h class="pesan-kosong">Tidak Ada Aset</h>
@@ -68,6 +70,7 @@
                 Tambah Produk
             </button>
         </a>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah Produk (AJAX)</button>
         <h5 class="sesi">Sesi terakhir masuk: {{last_login}}</h5>
         <a class="tombol-keluar" href="{% url 'main:logout' %}">
             <button>
@@ -76,4 +79,97 @@
         </a>
     </div>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Produk</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="type" class="col-form-label">Jenis:</label>
+                        <input type="text" class="form-control" id="type" name="type"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Nama:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="owner" class="col-form-label">Pemilik:</label>
+                        <input type="text" class="form-control" id="owner" name="owner"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">Jumlah:</label>
+                        <input type="number" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Deskripsi:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Tambah</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function getProducts() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
+
+    async function refreshProducts() {
+        document.getElementById("product_table").innerHTML = ""
+        const products = await getProducts()
+        let htmlString = `<tr>
+            <th>Jenis</th>
+            <th>Nama</th>
+            <th>Pemilik</th>
+            <th>Jumlah</th>
+            <thTanggal Ditambahkan</th>
+            <th>Deskripsi</th>
+            <th>Aksi</th>
+        </tr>`
+        products.forEach((item) => {
+            htmlString += `\n<tr class="isi-tabel {% if forloop.last %}produk-terakhir{% endif %}">
+            <td class="jenis">${item.fields.type}</td>
+            <td class="nama">${item.fields.name}</td>
+            <td class="pemilik">${item.fields.owner}</td>
+            <td class="jumlah">${item.fields.amount}</td>
+            <td class="tanggal">${item.fields.date_added}</td>
+            <td class="deskripsi">${item.fields.description}</td>
+            <td class="hapus"><button onclick="deleteProduct(${item.pk})">Hapus</button></td>
+        </tr>`
+        })
+        document.getElementById("product_table").innerHTML = htmlString
+    }
+    refreshProducts()
+
+    function addProduct() {
+        fetch("{% url 'main:create_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+        document.getElementById("form").reset()
+        return false
+    }
+    document.getElementById("button_add").onclick = addProduct
+
+    async function deleteProduct(id) {
+        const confirmation = confirm("Apakah Anda yakin ingin menghapus produk tersebut?");
+        if (confirmation) {
+            await fetch(`{% url 'main:delete_ajax' %}?id=${id}`, {
+                method: "DELETE",
+            });
+            refreshProducts();
+        }
+    }
+</script>
 {% endblock content %}
