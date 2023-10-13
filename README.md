@@ -477,9 +477,8 @@
        ```html
        <table id="product_table"></table>
        ```
-       Terakhir, membuat blok `script` dengan kode berikut.
-       ```html
-       <script>
+       Terakhir, membuat blok `script` berisi kode berikut.
+       ```javascript
        async function refreshProducts() {
            document.getElementById("product_table").innerHTML = ""
            const products = await getProducts()
@@ -514,7 +513,7 @@
            return HttpResponse(serializers.serialize('json', product_item))
        ```
        Kedua, menambahkan fungsi `getProducts` pada berkas `main.html` pada folder `templates` di subdirektori `main` dengan kode berikut.
-       ```html
+       ```javascript
        async function getProducts() {
            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
        }
@@ -609,7 +608,7 @@
        ```
      * Menghubungkan Formulir dengan Jalur
        Menambahkan kode berikut ke blok `script` pada berkas `main.html` pada folder `templates` di subdirektori `main`.
-       ```html
+       ```javascript
        document.getElementById("button_add").onclick = addProduct
        ```
      * Melakukan *Refresh*
