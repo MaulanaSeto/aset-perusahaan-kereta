@@ -34,6 +34,23 @@ def create_product(request):
     context = {'form': form}
     return render(request, "create_product.html", context)
 
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        new_product = Product.objects.create(
+            user = request.user,
+            type = data["type"],
+            name = data["name"],
+            owner = data["owner"],
+            amount = int(data["amount"]),
+            description = data["description"]
+        )
+        new_product.save()
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
+
 def edit_product(request, id):
     product = Product.objects.get(pk = id)
     form = ProductForm(request.POST or None, instance=product)
@@ -65,7 +82,7 @@ def show_json_by_id(request, id):
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def get_product_json(request):
-    product_item = Product.objects.all()
+    product_item = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', product_item))
 
 def register(request):
